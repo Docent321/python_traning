@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from selenium.webdriver.firefox.webdriver import WebDriver
 import unittest
+from contact import Contact
 
 def is_alert_present(wd):
     try:
@@ -26,25 +27,25 @@ class test_add_contact(unittest.TestCase):
         wd.find_element_by_name("pass").send_keys(password)
         wd.find_element_by_xpath("//form[@id='LoginForm']/input[3]").click()
 
-    def Create_contact(self, wd, firtname, lastname, address, home, email):
+    def Create_contact(self, wd, contatc):
         # open contact creation
         wd.find_element_by_link_text("add new").click()
         # fill contact form
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
-        wd.find_element_by_name("firstname").send_keys(firtname)
+        wd.find_element_by_name("firstname").send_keys(contatc.firtname)
         wd.find_element_by_name("lastname").click()
         wd.find_element_by_name("lastname").clear()
-        wd.find_element_by_name("lastname").send_keys(lastname)
+        wd.find_element_by_name("lastname").send_keys(contatc.lastname)
         wd.find_element_by_name("address").click()
         wd.find_element_by_name("address").clear()
-        wd.find_element_by_name("address").send_keys(address)
+        wd.find_element_by_name("address").send_keys(contatc.address)
         wd.find_element_by_name("home").click()
         wd.find_element_by_name("home").clear()
-        wd.find_element_by_name("home").send_keys(home)
+        wd.find_element_by_name("home").send_keys(contatc.home)
         wd.find_element_by_name("email").click()
         wd.find_element_by_name("email").clear()
-        wd.find_element_by_name("email").send_keys(email)
+        wd.find_element_by_name("email").send_keys(contatc.email)
         # Enter
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
@@ -59,7 +60,7 @@ class test_add_contact(unittest.TestCase):
         wd = self.wd
         self.Open_home_page(wd)
         self.Login(wd, username="admin", password="secret")
-        self.Create_contact(wd, firtname="qwe", lastname="qwe", address="qwe", home="qwe", email="qwe")
+        self.Create_contact(wd, Contact(firtname="qwe", lastname="qwe", address="qwe", home="qwe", email="qwe"))
         self.Return_contact_list(wd)
         self.Logout(wd)
 
