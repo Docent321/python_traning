@@ -19,6 +19,7 @@ class test_add_groop(unittest.TestCase):
         wd.get("http://localhost/addressbook/")
 
     def login(self, wd, username, password):
+        self.open_home_page(wd)
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys(username)
@@ -31,6 +32,7 @@ class test_add_groop(unittest.TestCase):
         wd.find_element_by_link_text("groups").click()
 
     def create_groop(self, wd, group):
+        self.open_groops_page(wd)
         # init groop creation
         wd.find_element_by_name("new").click()
         # fill groop firm
@@ -45,6 +47,7 @@ class test_add_groop(unittest.TestCase):
         wd.find_element_by_name("group_footer").send_keys(group.footer)
         # submit groop creation
         wd.find_element_by_name("submit").click()
+        self.return_to_groops_page(wd)
 
     def return_to_groops_page(self, wd):
         wd.find_element_by_link_text("groups").click()
@@ -55,11 +58,8 @@ class test_add_groop(unittest.TestCase):
 
     def test_add_groop(self):
         wd = self.wd
-        self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
-        self.open_groops_page(wd)
         self.create_groop(wd, Group(name="qweqwe", header="qweqwe", footer="qweqwe"))
-        self.return_to_groops_page(wd)
         self.Logout(wd)
 
     def tearDown(self):
