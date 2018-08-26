@@ -47,6 +47,8 @@ class test_add_contact(unittest.TestCase):
         wd.find_element_by_name("email").send_keys("qwe")
         # Enter
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+        # Return home page
+        wd.find_element_by_id("logo").click()
         # logout
         wd.find_element_by_link_text("Logout").click()
         self.assertTrue(success)
