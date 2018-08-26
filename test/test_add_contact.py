@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
-from group import Group
-from application import Application
+from model.contact import Contact
+from fixture.application import Application
 
 @pytest.fixture
 def app(request):
@@ -9,9 +9,8 @@ def app(request):
     request.addfinalizer(fixture.destroy)
     return fixture
 
-
-def test_add_groop(app):
+def test_add_contact(app):
     app.login(username="admin", password="secret")
-    app.create_groop(Group(name="qweqwe", header="qweqwe", footer="qweqwe"))
+    app.create_contact(Contact(firtname="qwe", lastname="qwe", address="qwe", home="qwe", email="qwe"))
     app.logout()
 
