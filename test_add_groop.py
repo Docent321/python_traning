@@ -13,5 +13,5 @@ def app(request):
 def test_add_groop(app):
     app.login(username="admin", password="secret")
     app.create_groop(Group(name="qweqwe", header="qweqwe", footer="qweqwe"))
-    app.Logout()
+    app.logout()
 
