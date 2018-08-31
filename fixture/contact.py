@@ -38,6 +38,29 @@ class ContactHelper:
         # submit Ok
         wd.switch_to_alert().accept()
 
+    def change_first_contact(self, contatc):
+        wd = self.app.wd
+        # submit edit
+        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img").click()
+        # fill contact form
+        wd.find_element_by_name("firstname").click()
+        wd.find_element_by_name("firstname").clear()
+        wd.find_element_by_name("firstname").send_keys(contatc.firtname)
+        wd.find_element_by_name("lastname").click()
+        wd.find_element_by_name("lastname").clear()
+        wd.find_element_by_name("lastname").send_keys(contatc.lastname)
+        wd.find_element_by_name("address").click()
+        wd.find_element_by_name("address").clear()
+        wd.find_element_by_name("address").send_keys(contatc.address)
+        wd.find_element_by_name("home").click()
+        wd.find_element_by_name("home").clear()
+        wd.find_element_by_name("home").send_keys(contatc.home)
+        wd.find_element_by_name("email").click()
+        wd.find_element_by_name("email").clear()
+        wd.find_element_by_name("email").send_keys(contatc.email)
+        # submit update
+        wd.find_element_by_name("update").click()
+        self.Return_contact_list()
 
     def Return_contact_list(self):
         wd = self.app.wd
