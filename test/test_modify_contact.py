@@ -27,7 +27,7 @@ def test_modify_contact_home(app):
     app.contact.modify_first_contact(Contact(home="New home"))
     app.session.logout()
 
-def test_modify_contact_email(app):
-    app.session.login(username="admin", password="secret")
-    app.contact.modify_first_contact(Contact(email="New email"))
-    app.session.logout()
+#def test_modify_contact_email(app):
+#    app.session.login(username="admin", password="secret")
+#    app.contact.modify_first_contact(Contact(email="New email"))
+#    app.session.logout()
