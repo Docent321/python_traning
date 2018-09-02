@@ -41,7 +41,7 @@ class ContactHelper:
         # submit Ok
         wd.switch_to_alert().accept()
 
-    def change_first_contact(self, contatc):
+    def modify_first_contact(self, contatc):
         wd = self.app.wd
         # submit edit
         wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img").click()
