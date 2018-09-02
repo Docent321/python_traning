@@ -9,7 +9,13 @@ class ContactHelper:
         wd = self.app.wd
         # open contact creation
         wd.find_element_by_link_text("add new").click()
-        # fill contact form
+        self.fill_contact_form(contatc)
+        # Enter
+        wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+        self.Return_contact_list()
+
+    def fill_contact_form(self, contatc):
+        wd = self.app.wd
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
         wd.find_element_by_name("firstname").send_keys(contatc.firtname)
@@ -25,9 +31,6 @@ class ContactHelper:
         wd.find_element_by_name("email").click()
         wd.find_element_by_name("email").clear()
         wd.find_element_by_name("email").send_keys(contatc.email)
-        # Enter
-        wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
-        self.Return_contact_list()
 
     def delete_first_contact(self):
         wd = self.app.wd
@@ -42,22 +45,7 @@ class ContactHelper:
         wd = self.app.wd
         # submit edit
         wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img").click()
-        # fill contact form
-        wd.find_element_by_name("firstname").click()
-        wd.find_element_by_name("firstname").clear()
-        wd.find_element_by_name("firstname").send_keys(contatc.firtname)
-        wd.find_element_by_name("lastname").click()
-        wd.find_element_by_name("lastname").clear()
-        wd.find_element_by_name("lastname").send_keys(contatc.lastname)
-        wd.find_element_by_name("address").click()
-        wd.find_element_by_name("address").clear()
-        wd.find_element_by_name("address").send_keys(contatc.address)
-        wd.find_element_by_name("home").click()
-        wd.find_element_by_name("home").clear()
-        wd.find_element_by_name("home").send_keys(contatc.home)
-        wd.find_element_by_name("email").click()
-        wd.find_element_by_name("email").clear()
-        wd.find_element_by_name("email").send_keys(contatc.email)
+        self.fill_contact_form(contatc)
         # submit update
         wd.find_element_by_name("update").click()
         self.Return_contact_list()
