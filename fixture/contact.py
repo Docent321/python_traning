@@ -36,7 +36,7 @@ class ContactHelper:
 
     def delete_contact_by_index(self, index):
         wd = self.app.wd
-        # select first group
+        # select some contact
         self.select_contact_by_index(index)
         # submit deletion
         wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
@@ -54,9 +54,12 @@ class ContactHelper:
         wd.find_elements_by_name("selected[]")[index].click()
 
     def modify_first_contact(self, new_contatc_data):
+        self.modify_contact_by_index
+
+    def modify_contact_by_index(self, index, new_contatc_data):
         wd = self.app.wd
         # submit edit
-        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img").click()
+        wd.find_elements_by_xpath("//img[@src='icons/pencil.png']")[index].click()
         self.fill_contact_form(new_contatc_data)
         # submit update
         wd.find_element_by_name("update").click()
