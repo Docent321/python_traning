@@ -21,7 +21,7 @@ class ContactHelper:
         self.type("firstname", contact.firstname)
         self.type("lastname", contact.lastname)
         self.type("address", contact.address)
-        self.type("home", contact.home)
+        self.type("home", contact.homephone)
         self.type("email", contact.email)
 
     def type(self, field_name, text):
@@ -79,11 +79,13 @@ class ContactHelper:
     def get_contanct_list(self):
         if self.contact_cache is None:
             wd = self.app.wd
+            self.app.open_home_page()
             self.contact_cache = []
-            for element in wd.find_elements_by_name("entry"):
-                text_lastname = element.find_elements_by_css_selector("td")[1].text
-                text_firstname = element.find_elements_by_css_selector("td")[2].text
-                id = element.find_element_by_name("selected[]").get_attribute("value")
+            for row in wd.find_elements_by_name("entry"):
+                cells = row.find_elements_by_tag_name("td")
+                text_lastname = cells[1].text
+                text_firstname = cells[2].text
+                id = cells[0].find_element_by_tag_name("input").get_attribute("value")
                 self.contact_cache.append(Contact(firstname=text_firstname, lastname=text_lastname, id=id))
         return list(self.contact_cache)
 
